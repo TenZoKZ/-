@@ -5,183 +5,172 @@
     <title>Happy Birthday Sayash 💗</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Красивый шрифт -->
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-
     <style>
-        body {
+        * {
             margin: 0;
-            background: linear-gradient(135deg, #ffe0ec, #fff);
-            font-family: 'Comfortaa', sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffb6c1, #ff6f91);
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
             text-align: center;
-            color: #444;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
         }
 
         h1 {
-            margin-top: 25px;
-            color: #e91e63;
             font-size: 1.8rem;
-            position: relative;
-            z-index: 10;
+            margin-bottom: 15px;
         }
 
-        #counter {
+        p {
             font-size: 1rem;
-            margin-bottom: 10px;
-            z-index: 10;
-            position: relative;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
 
-        #game {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
+        button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 30px;
+            background: #ff4d6d;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
         }
 
         .emoji {
-            position: absolute;
-            top: -60px;
-            font-size: 2.4rem;
+            position: fixed;
+            top: -50px;
+            font-size: 2rem;
+            animation: fall linear forwards;
+            pointer-events: auto;
             cursor: pointer;
-            animation: fall linear;
-            user-select: none;
         }
 
         @keyframes fall {
-            from { transform: translateY(-60px); }
-            to { transform: translateY(110vh); }
+            to {
+                transform: translateY(110vh);
+            }
         }
 
-        #message {
+        .hidden {
             display: none;
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-            animation: fadeIn 2.5s ease;
         }
 
-        .title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            color: #e91e63;
-            margin-bottom: 25px;
+        .message {
+            text-align: left;
+            font-size: 1rem;
         }
 
-        .line {
-            margin: 18px 0;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            animation: slideUp 1.8s ease forwards;
-            opacity: 0;
-        }
-
-        .line:nth-child(2) { animation-delay: 0.4s; }
-        .line:nth-child(3) { animation-delay: 0.8s; }
-        .line:nth-child(4) { animation-delay: 1.2s; }
-        .line:nth-child(5) { animation-delay: 1.6s; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<h1>Поймай 10 смайликов 💖</h1>
-<div id="counter">Поймано: 0 / 10</div>
+<div class="container" id="startScreen">
+    <h1>🎉 Привет, Саяш 💖</h1>
+    <p>Нажми кнопку и поймай смайлики 💕  
+       Нужно нажать <b>10 раз</b>, чтобы открыть сюрприз 🎁</p>
+    <button onclick="startGame()">Начать игру 💗</button>
+</div>
 
-<div id="game"></div>
+<div class="container hidden" id="messageScreen">
+    <h1>Happy Birthday my love Sayash💗</h1>
 
-<div id="message">
-    <div class="title">Happy Birthday my love Sayash 💗</div>
+    <div class="message">
+        <p>Как ты и сказала, пусть каждый новый день дарит радость,  
+        а наша любовь становится только крепче.</p>
 
-    <div class="line">
-        Как ты и сказала, пусть каждый новый день дарит радость,
-        а наша любовь становится только крепче.
-    </div>
+        <p>Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце.  
+        Хоть и между нами километры, но чувства от этого не становятся слабее — наоборот,  
+        я ещё больше ценю тебя и каждое наше слово, люблю тебя❤️✨</p>
 
-    <div class="line">
-        Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце.
-        Пусть между нами километры, но чувства от этого не становятся слабее —
-        наоборот, я ещё больше ценю тебя и каждое наше слово. Люблю тебя ❤️✨
-    </div>
+        <p>Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest и не верил,  
+        что это ты. Всё потому, что ты на этих фотографиях всегда красивая,  
+        и из-за этого я не мог представить, что такая красивая девушка играет в Блек Рашу😂.  
+        А оказывается, нет — такая девушка существует и общается со мной.  
+        И я чувствую себя таким везунчиком, что встретил тебя 🥰💖</p>
 
-    <div class="line">
-        Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest
-        и не верил, что это ты. Просто потому, что ты там слишком красивая,
-        и я не мог представить, что такая девушка играет в Блек Рашу 😂
-        А оказывается — такая девушка существует… и общается со мной.
-        И я чувствую себя невероятным везунчиком, что встретил тебя 🥰💖
-    </div>
-
-    <div class="line">
-        Я хочу, чтобы ты знала: ты очень важна для меня.
-        Твоя улыбка, твой голос и твоя доброта дают мне силы и спокойствие.
-        Пусть в этот день ты почувствуешь,
-        как тебя любят и как сильно тобой дорожат 💓🌸
+        <p>Я хочу, чтобы ты знала: ты очень важна для меня.  
+        Твоя улыбка, твой голос, твоя доброта дают мне силы и спокойствие.  
+        Пусть в этот день ты почувствуешь, как тебя любят и как сильно тобой дорожат💓🌸</p>
     </div>
 </div>
 
-<!-- Музыка -->
-<audio id="bg-music" src="music.mp3" loop></audio>
-
 <script>
-    const game = document.getElementById('game');
-    const counter = document.getElementById('counter');
-    const message = document.getElementById('message');
-    const music = document.getElementById('bg-music');
+    let clicks = 0;
+    let gameStarted = false;
 
-    const emojis = ['💖','💗','💘','💕','🥰','😍','✨','🌸','💞','❤️'];
+    const emojis = ["💗", "💖", "💘", "😍", "🥰", "✨", "🌸", "❤️"];
 
-    let count = 0;
-    const maxClicks = 10;
+    function startGame() {
+        document.getElementById("startScreen").classList.add("hidden");
+        gameStarted = true;
+        emojiRain();
+    }
 
-    function createEmoji() {
-        const emoji = document.createElement('div');
-        emoji.className = 'emoji';
-        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    function emojiRain() {
+        if (!gameStarted) return;
 
-        emoji.style.left = Math.random() * 90 + 'vw';
-        const duration = Math.random() * 3 + 3;
-        emoji.style.animationDuration = duration + 's';
+        const emoji = document.createElement("div");
+        emoji.className = "emoji";
+        emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.animationDuration = (3 + Math.random() * 3) + "s";
 
         emoji.onclick = () => {
-            count++;
-            counter.textContent = `Поймано: ${count} / ${maxClicks}`;
+            clicks++;
             emoji.remove();
-
-            if (count >= maxClicks) {
+            if (clicks >= 10) {
                 endGame();
             }
         };
 
-        game.appendChild(emoji);
+        document.body.appendChild(emoji);
 
-        setTimeout(() => emoji.remove(), duration * 1000);
+        setTimeout(() => {
+            emoji.remove();
+        }, 6000);
+
+        setTimeout(emojiRain, 400);
     }
 
     function endGame() {
-        game.style.display = 'none';
-        counter.style.display = 'none';
-        message.style.display = 'block';
-        music.play();
+        gameStarted = false;
+        document.querySelectorAll(".emoji").forEach(e => e.remove());
+        document.getElementById("messageScreen").classList.remove("hidden");
     }
-
-    const interval = setInterval(() => {
-        if (count < maxClicks) {
-            createEmoji();
-        } else {
-            clearInterval(interval);
-        }
-    }, 550);
 </script>
 
 </body>
