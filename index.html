@@ -42,6 +42,7 @@ button {
     font-size:1.2rem;
     cursor:pointer;
     margin-top:20px;
+    transition:0.2s;
 }
 button:hover { transform: scale(1.05); }
 h1 {
@@ -89,6 +90,14 @@ h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+/* Анимации перехода */
+.fadeOut { animation: fadeOut 0.6s forwards; }
+.fadeIn { animation: fadeIn 0.6s forwards; }
+
+@keyframes fadeOut { from {opacity:1;} to {opacity:0;} }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
 </style>
 </head>
 <body>
@@ -160,18 +169,24 @@ function createEmoji() {
 }
 
 function showGame(){
-    main.classList.remove('active');
-    gameDiv.classList.add('active');
-    interval = setInterval(createEmoji,300);
+    main.classList.add('fadeOut');
+    setTimeout(()=>{
+        main.classList.remove('active','fadeOut');
+        gameDiv.classList.add('active','fadeIn');
+        interval = setInterval(createEmoji,300);
+    },600);
 }
 
 function endGame(){
     clearInterval(interval);
-    gameDiv.classList.remove('active');
-    messageDiv.classList.add('active');
-    music.volume=0.4;
-    music.play();
-    document.body.style.overflow='auto';
+    gameDiv.classList.add('fadeOut');
+    setTimeout(()=>{
+        gameDiv.classList.remove('active','fadeOut');
+        messageDiv.classList.add('active','fadeIn');
+        music.volume=0.4;
+        music.play();
+        document.body.style.overflow='auto';
+    },600);
 }
 </script>
 </body>
