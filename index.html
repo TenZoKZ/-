@@ -91,13 +91,11 @@ h1 {
     -webkit-text-fill-color: transparent;
 }
 
-/* Анимации перехода */
 .fadeOut { animation: fadeOut 0.6s forwards; }
 .fadeIn { animation: fadeIn 0.6s forwards; }
 @keyframes fadeOut { from {opacity:1;} to {opacity:0;} }
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
-/* Анимация при заходе на сайт */
 .page.enter {
     animation: enter 1s ease forwards;
 }
@@ -109,21 +107,18 @@ h1 {
 </head>
 <body>
 
-<!-- Главная страница -->
 <div id="main" class="page active enter">
     <h1>Привет, Саяш 💗</h1>
     <p>Нажми кнопку "Начать игру", чтобы поймать смайлики!</p>
     <button onclick="showGame()">Начать игру 💞</button>
 </div>
 
-<!-- Игровая страница -->
 <div id="gameDiv" class="page">
     <h1>Поймай 10 смайликов 💖</h1>
     <div id="counter">Поймано: 0 / 10</div>
     <div id="game"></div>
 </div>
 
-<!-- Страница с поздравлением -->
 <div id="messageDiv" class="page">
     <div id="message" class="card">
         <div class="title">Happy Birthday my love Sayash 💗</div>
