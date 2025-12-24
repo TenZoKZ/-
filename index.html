@@ -5,48 +5,44 @@
 <title>Happy Birthday Sayash 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- КРАСИВЫЕ ШРИФТЫ -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #ffb6c1, #ff6f91);
+    background: linear-gradient(135deg, #ffd1dc, #ff9eb5);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     color: #fff;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container {
     width: 92%;
-    max-width: 500px;
+    max-width: 520px;
     max-height: 85vh;
-    padding: 18px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 20px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    padding: 20px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
     overflow-y: auto;
     text-align: center;
 }
 
-.container::-webkit-scrollbar {
-    width: 6px;
-}
-.container::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.4);
-    border-radius: 10px;
-}
-
 h1 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    margin-bottom: 14px;
 }
 
 p {
@@ -56,23 +52,31 @@ p {
 }
 
 button {
-    padding: 14px 28px;
+    margin-top: 10px;
+    padding: 14px 30px;
     font-size: 1.05rem;
     border: none;
     border-radius: 30px;
-    background: #ff4d6d;
+    background: linear-gradient(135deg, #ff4d6d, #ff758f);
     color: #fff;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    font-weight: 500;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
     transition: 0.3s;
 }
 
 button:hover {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
 .hidden {
     display: none;
+}
+
+.counter {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .message {
@@ -82,7 +86,7 @@ button:hover {
 .emoji {
     position: fixed;
     top: -40px;
-    font-size: 2rem;
+    font-size: 2.1rem;
     animation: fall linear forwards;
     cursor: pointer;
 }
@@ -94,12 +98,9 @@ button:hover {
 }
 
 @media (max-width: 480px) {
-    h1 { font-size: 1.35rem; }
+    h1 { font-size: 1.4rem; }
     p { font-size: 0.9rem; }
-    button {
-        font-size: 1rem;
-        padding: 12px 22px;
-    }
+    button { font-size: 1rem; }
 }
 </style>
 </head>
@@ -108,8 +109,11 @@ button:hover {
 
 <div class="container" id="startScreen">
     <h1>🎉 Привет, Саяш 💖</h1>
-    <p>Нажми кнопку и поймай смайлики 💕<br>
-    Нужно нажать <b>10 раз</b>, чтобы открыть сюрприз 🎁</p>
+    <p>Поймай смайлики 💕  
+    Нажми <b>10 раз</b>, чтобы открыть поздравление 🎁</p>
+
+    <div class="counter" id="counter">Собрано: 0 / 10</div>
+
     <button onclick="startGame()">Начать игру 💗</button>
 </div>
 
@@ -169,6 +173,7 @@ function emojiRain() {
 
     emoji.onclick = () => {
         clicks++;
+        document.getElementById("counter").innerText = `Собрано: ${clicks} / 10`;
         emoji.remove();
         if (clicks >= 10) endGame();
     };
@@ -176,7 +181,7 @@ function emojiRain() {
     document.body.appendChild(emoji);
 
     setTimeout(() => emoji.remove(), 6000);
-    setTimeout(emojiRain, 400);
+    setTimeout(emojiRain, 380);
 }
 
 function endGame() {
