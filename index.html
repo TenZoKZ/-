@@ -6,13 +6,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-body {
+html, body {
     margin:0;
+    height:100%;
     font-family:'Comfortaa',sans-serif;
-    background: linear-gradient(135deg,#4a0000,#8b0000);
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#330000,#8b0000,#ff4d6d);
     color:white;
-    text-align:center;
     overflow-x:hidden;
+}
+.page {
+    display: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.page.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 button {
     padding: 14px 30px;
@@ -25,14 +44,6 @@ button {
     margin-top:20px;
 }
 button:hover { transform: scale(1.05); }
-.card {
-    background: rgba(255,255,255,0.15);
-    padding: 30px 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    max-width:520px;
-    margin:auto;
-}
 h1 {
     font-family:'Great Vibes',cursive;
     font-size:2.5rem;
@@ -41,8 +52,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     margin-bottom:20px;
 }
-#game, #counter { margin-top:20px; }
-#game { position: relative; width:100%; height:60vh; overflow:hidden; }
+#game { position: relative; width:100%; height:60vh; overflow:hidden; margin-top:20px; }
 .emoji {
     position:absolute;
     top:-80px;
@@ -58,13 +68,9 @@ h1 {
     100% {transform: scale(0); opacity:0;}
 }
 #message {
-    display:none;
     max-height:60vh;
     overflow-y:auto;
-    animation: messageDrop 1.5s ease forwards;
-    margin-top:20px;
 }
-@keyframes messageDrop { from {opacity:0; transform:translateY(-40px);} to {opacity:1; transform:translateY(0);} }
 .title { 
     font-family:'Great Vibes',cursive; 
     font-size:2.8rem; 
@@ -88,27 +94,29 @@ h1 {
 <body>
 
 <!-- Главная страница -->
-<div id="main" class="card">
+<div id="main" class="page active">
     <h1>Привет, Саяш 💗</h1>
     <p>Нажми кнопку "Начать игру", чтобы поймать смайлики!</p>
     <button onclick="showGame()">Начать игру 💞</button>
 </div>
 
-<!-- Игровая зона -->
-<div id="gameDiv" class="card" style="display:none;">
+<!-- Игровая страница -->
+<div id="gameDiv" class="page">
     <h1>Поймай 10 смайликов 💖</h1>
     <div id="counter">Поймано: 0 / 10</div>
     <div id="game"></div>
 </div>
 
-<!-- Сообщение -->
-<div id="message" class="card">
-    <div class="title">Happy Birthday my love Sayash 💗</div>
-    <div class="line highlight">Как ты и сказала, пусть каждый новый день дарит радость, а наша любовь становится только крепче.</div>
-    <div class="line">Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце. Пусть между нами километры, но чувства от этого не становятся слабее — наоборот, я ещё больше ценю тебя и каждое наше слово. Люблю тебя ❤️✨</div>
-    <div class="line highlight">Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest и не верил, что это ты. Просто потому, что ты там слишком красивая, и я не мог представить, что такая девушка играет в Блек Рашу 😂</div>
-    <div class="line">А оказывается — такая девушка существует… и общается со мной. И я чувствую себя невероятным везунчиком, что встретил тебя 🥰💖</div>
-    <div class="line highlight">Я хочу, чтобы ты знала: ты очень важна для меня. Твоя улыбка, твой голос и твоя доброта дают мне силы и спокойствие. Пусть в этот день ты почувствуешь, как тебя любят и как сильно тобой дорожат 💓🌸</div>
+<!-- Страница с поздравлением -->
+<div id="messageDiv" class="page">
+    <div id="message" class="card">
+        <div class="title">Happy Birthday my love Sayash 💗</div>
+        <div class="line highlight">Как ты и сказала, пусть каждый новый день дарит радость, а наша любовь становится только крепче.</div>
+        <div class="line">Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце. Пусть между нами километры, но чувства от этого не становятся слабее — наоборот, я ещё больше ценю тебя и каждое наше слово. Люблю тебя ❤️✨</div>
+        <div class="line highlight">Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest и не верил, что это ты. Просто потому, что ты там слишком красивая, и я не мог представить, что такая девушка играет в Блек Рашу 😂</div>
+        <div class="line">А оказывается — такая девушка существует… и общается со мной. И я чувствую себя невероятным везунчиком, что встретил тебя 🥰💖</div>
+        <div class="line highlight">Я хочу, чтобы ты знала: ты очень важна для меня. Твоя улыбка, твой голос и твоя доброта дают мне силы и спокойствие. Пусть в этот день ты почувствуешь, как тебя любят и как сильно тобой дорожат 💓🌸</div>
+    </div>
 </div>
 
 <audio id="bg-music" src="music.mp3" loop></audio>
@@ -116,9 +124,9 @@ h1 {
 <script>
 const main = document.getElementById('main');
 const gameDiv = document.getElementById('gameDiv');
+const messageDiv = document.getElementById('messageDiv');
 const game = document.getElementById('game');
 const counter = document.getElementById('counter');
-const message = document.getElementById('message');
 const music = document.getElementById('bg-music');
 
 const emojis = ['💖','💗','💘','💕','🥰','😍','✨','🌸','💞','❤️'];
@@ -136,7 +144,7 @@ function createEmoji() {
     emoji.className='emoji';
     emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
     emoji.style.color = randomColor();
-    const emojiSize = 48; // ширина смайлика для ограничения
+    const emojiSize = 48; 
     emoji.style.left = Math.random() * (window.innerWidth - emojiSize) + 'px';
     const duration = Math.random()*4+6;
     emoji.style.animationDuration = duration+'s';
@@ -152,20 +160,19 @@ function createEmoji() {
 }
 
 function showGame(){
-    main.style.display='none';
-    gameDiv.style.display='block';
-    interval = setInterval(createEmoji,300); // частота увеличена
+    main.classList.remove('active');
+    gameDiv.classList.add('active');
+    interval = setInterval(createEmoji,300);
 }
 
 function endGame(){
     clearInterval(interval);
-    gameDiv.style.display='none';
-    message.style.display='block';
+    gameDiv.classList.remove('active');
+    messageDiv.classList.add('active');
     music.volume=0.4;
     music.play();
     document.body.style.overflow='auto';
 }
 </script>
-
 </body>
 </html>
