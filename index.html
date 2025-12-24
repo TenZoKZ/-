@@ -2,192 +2,168 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Sayash 💗</title>
+<title>С днем рождения, Саяш 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- КРАСИВЫЕ ШРИФТЫ -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #ffd1dc, #ff9eb5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
+    margin:0;
+    font-family:'Comfortaa',sans-serif;
+    background: linear-gradient(135deg,#4a0000,#8b0000);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
 }
-
-.container {
-    width: 92%;
-    max-width: 520px;
-    max-height: 85vh;
-    padding: 20px;
-    background: rgba(255,255,255,0.18);
-    border-radius: 24px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-    overflow-y: auto;
-    text-align: center;
-}
-
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.7rem;
-    margin-bottom: 14px;
-}
-
-p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 14px;
-}
-
 button {
-    margin-top: 10px;
     padding: 14px 30px;
-    font-size: 1.05rem;
     border: none;
     border-radius: 30px;
-    background: linear-gradient(135deg, #ff4d6d, #ff758f);
-    color: #fff;
-    cursor: pointer;
-    font-weight: 500;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    transition: 0.3s;
+    background: linear-gradient(135deg,#ff4d6d,#ff758f);
+    color:white;
+    font-size:1.2rem;
+    cursor:pointer;
+    margin-top:20px;
 }
-
-button:hover {
-    transform: scale(1.06);
+button:hover { transform: scale(1.05); }
+.card {
+    background: rgba(255,255,255,0.15);
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width:520px;
+    margin:auto;
 }
-
-.hidden {
-    display: none;
+h1 {
+    font-family:'Great Vibes',cursive;
+    font-size:2.5rem;
+    background: linear-gradient(90deg,#ff9aa2,#ff758f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom:20px;
 }
-
-.counter {
-    font-size: 1rem;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-.message {
-    text-align: left;
-}
-
+#game, #counter { margin-top:20px; }
+#game { position: relative; width:100%; height:60vh; overflow:hidden; }
 .emoji {
-    position: fixed;
-    top: -40px;
-    font-size: 2.1rem;
-    animation: fall linear forwards;
-    cursor: pointer;
+    position:absolute;
+    top:-80px;
+    font-size:3rem;
+    cursor:pointer;
+    animation: fall linear;
+    user-select:none;
 }
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
+@keyframes fall { from {transform: translateY(-80px);} to {transform: translateY(110vh);} }
+@keyframes pop {
+    0% {transform: scale(1); opacity:1;}
+    50% {transform: scale(1.8); opacity:0.7;}
+    100% {transform: scale(0); opacity:0;}
 }
-
-@media (max-width: 480px) {
-    h1 { font-size: 1.4rem; }
-    p { font-size: 0.9rem; }
-    button { font-size: 1rem; }
+#message {
+    display:none;
+    max-height:60vh;
+    overflow-y:auto;
+    animation: messageDrop 1.5s ease forwards;
+    margin-top:20px;
+}
+@keyframes messageDrop { from {opacity:0; transform:translateY(-40px);} to {opacity:1; transform:translateY(0);} }
+.title { 
+    font-family:'Great Vibes',cursive; 
+    font-size:2.8rem; 
+    background: linear-gradient(90deg,#ff9aa2,#ffcad4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom:25px; 
+}
+.line { 
+    margin:18px 0; 
+    font-size:1.1rem; 
+    line-height:1.8; 
+}
+.line.highlight { 
+    background: linear-gradient(90deg,#ff9aa2,#ff758f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 </style>
 </head>
-
 <body>
 
-<div class="container" id="startScreen">
-    <h1>🎉 Привет, Саяш 💖</h1>
-    <p>Поймай смайлики 💕  
-    Нажми <b>10 раз</b>, чтобы открыть поздравление 🎁</p>
-
-    <div class="counter" id="counter">Собрано: 0 / 10</div>
-
-    <button onclick="startGame()">Начать игру 💗</button>
+<!-- Главная страница -->
+<div id="main" class="card">
+    <h1>Привет, Саяш 💗</h1>
+    <p>Нажми кнопку "Начать игру", чтобы поймать смайлики!</p>
+    <button onclick="showGame()">Начать игру 💞</button>
 </div>
 
-<div class="container hidden" id="messageScreen">
-    <h1>Happy Birthday my love Sayash💗</h1>
-
-    <div class="message">
-        <p>Как ты и сказала, пусть каждый новый день дарит радость,
-        а наша любовь становится только крепче.</p>
-
-        <p>Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце.
-        Хоть и между нами километры, но чувства от этого не становятся слабее —
-        наоборот, я ещё больше ценю тебя и каждое наше слово, люблю тебя❤️✨</p>
-
-        <p>Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest и не верил,
-        что это ты. Всё потому, что ты на этих фотографиях всегда красивая,
-        и из-за этого я не мог представить, что такая красивая девушка играет в Блек Рашу😂.
-        А оказывается — такая девушка существует и общается со мной.
-        И я чувствую себя таким везунчиком, что встретил тебя 🥰💖</p>
-
-        <p>Я хочу, чтобы ты знала: ты очень важна для меня.
-        Твоя улыбка, твой голос, твоя доброта дают мне силы и спокойствие.
-        Пусть в этот день ты почувствуешь, как тебя любят
-        и как сильно тобой дорожат💓🌸</p>
-    </div>
+<!-- Игровая зона -->
+<div id="gameDiv" class="card" style="display:none;">
+    <h1>Поймай 10 смайликов 💖</h1>
+    <div id="counter">Поймано: 0 / 10</div>
+    <div id="game"></div>
 </div>
 
-<audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- Сообщение -->
+<div id="message" class="card">
+    <div class="title">Happy Birthday my love Sayash 💗</div>
+    <div class="line highlight">Как ты и сказала, пусть каждый новый день дарит радость, а наша любовь становится только крепче.</div>
+    <div class="line">Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце. Пусть между нами километры, но чувства от этого не становятся слабее — наоборот, я ещё больше ценю тебя и каждое наше слово. Люблю тебя ❤️✨</div>
+    <div class="line highlight">Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest и не верил, что это ты. Просто потому, что ты там слишком красивая, и я не мог представить, что такая девушка играет в Блек Рашу 😂</div>
+    <div class="line">А оказывается — такая девушка существует… и общается со мной. И я чувствую себя невероятным везунчиком, что встретил тебя 🥰💖</div>
+    <div class="line highlight">Я хочу, чтобы ты знала: ты очень важна для меня. Твоя улыбка, твой голос и твоя доброта дают мне силы и спокойствие. Пусть в этот день ты почувствуешь, как тебя любят и как сильно тобой дорожат 💓🌸</div>
+</div>
+
+<audio id="bg-music" src="music.mp3" loop></audio>
 
 <script>
-let clicks = 0;
-let gameStarted = false;
+const main = document.getElementById('main');
+const gameDiv = document.getElementById('gameDiv');
+const game = document.getElementById('game');
+const counter = document.getElementById('counter');
+const message = document.getElementById('message');
+const music = document.getElementById('bg-music');
 
-const emojis = ["💗","💖","💘","😍","🥰","✨","🌸","❤️"];
+const emojis = ['💖','💗','💘','💕','🥰','😍','✨','🌸','💞','❤️'];
+const colors = ['#ffe0ec','#ffcad4','#ffb6c1','#ff69b4','#ff1493','#ff7f50','#f0e68c','#adff2f','#00ced1','#7fffd4'];
 
-function startGame() {
-    document.getElementById("startScreen").classList.add("hidden");
-    gameStarted = true;
+let count = 0;
+const maxClicks = 10;
+let interval;
 
-    const music = document.getElementById("bgMusic");
-    music.volume = 0.5;
+function randomColor(){ return colors[Math.floor(Math.random()*colors.length)]; }
+
+function createEmoji() {
+    if(count>=maxClicks) return;
+    const emoji = document.createElement('div');
+    emoji.className='emoji';
+    emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    emoji.style.color = randomColor();
+    const emojiSize = 48; // ширина смайлика для ограничения
+    emoji.style.left = Math.random() * (window.innerWidth - emojiSize) + 'px';
+    const duration = Math.random()*4+6;
+    emoji.style.animationDuration = duration+'s';
+    emoji.onclick=()=>{
+        count++;
+        counter.textContent=`Поймано: ${count} / ${maxClicks}`;
+        emoji.style.animation='pop 0.5s forwards';
+        setTimeout(()=>emoji.remove(),500);
+        if(count>=maxClicks) endGame();
+    }
+    game.appendChild(emoji);
+    setTimeout(()=>emoji.remove(), duration*1000);
+}
+
+function showGame(){
+    main.style.display='none';
+    gameDiv.style.display='block';
+    interval = setInterval(createEmoji,300); // частота увеличена
+}
+
+function endGame(){
+    clearInterval(interval);
+    gameDiv.style.display='none';
+    message.style.display='block';
+    music.volume=0.4;
     music.play();
-
-    emojiRain();
-}
-
-function emojiRain() {
-    if (!gameStarted) return;
-
-    const emoji = document.createElement("div");
-    emoji.className = "emoji";
-    emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-    emoji.style.left = Math.random() * 100 + "vw";
-    emoji.style.animationDuration = (3 + Math.random() * 3) + "s";
-
-    emoji.onclick = () => {
-        clicks++;
-        document.getElementById("counter").innerText = `Собрано: ${clicks} / 10`;
-        emoji.remove();
-        if (clicks >= 10) endGame();
-    };
-
-    document.body.appendChild(emoji);
-
-    setTimeout(() => emoji.remove(), 6000);
-    setTimeout(emojiRain, 380);
-}
-
-function endGame() {
-    gameStarted = false;
-    document.querySelectorAll(".emoji").forEach(e => e.remove());
-    document.getElementById("messageScreen").classList.remove("hidden");
+    document.body.style.overflow='auto';
 }
 </script>
 
