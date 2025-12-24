@@ -94,16 +94,23 @@ h1 {
 /* Анимации перехода */
 .fadeOut { animation: fadeOut 0.6s forwards; }
 .fadeIn { animation: fadeIn 0.6s forwards; }
-
 @keyframes fadeOut { from {opacity:1;} to {opacity:0;} }
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
+/* Анимация при заходе на сайт */
+.page.enter {
+    animation: enter 1s ease forwards;
+}
+@keyframes enter {
+    0% {opacity:0; transform: scale(0.9);}
+    100% {opacity:1; transform: scale(1);}
+}
 </style>
 </head>
 <body>
 
 <!-- Главная страница -->
-<div id="main" class="page active">
+<div id="main" class="page active enter">
     <h1>Привет, Саяш 💗</h1>
     <p>Нажми кнопку "Начать игру", чтобы поймать смайлики!</p>
     <button onclick="showGame()">Начать игру 💞</button>
@@ -144,11 +151,12 @@ const colors = ['#ffe0ec','#ffcad4','#ffb6c1','#ff69b4','#ff1493','#ff7f50','#f0
 let count = 0;
 const maxClicks = 10;
 let interval;
+let gameOver = false;
 
 function randomColor(){ return colors[Math.floor(Math.random()*colors.length)]; }
 
 function createEmoji() {
-    if(count>=maxClicks) return;
+    if(count>=maxClicks || gameOver) return;
     const emoji = document.createElement('div');
     emoji.className='emoji';
     emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
@@ -158,6 +166,7 @@ function createEmoji() {
     const duration = Math.random()*4+6;
     emoji.style.animationDuration = duration+'s';
     emoji.onclick=()=>{
+        if(gameOver) return;
         count++;
         counter.textContent=`Поймано: ${count} / ${maxClicks}`;
         emoji.style.animation='pop 0.5s forwards';
@@ -178,6 +187,7 @@ function showGame(){
 }
 
 function endGame(){
+    gameOver = true;
     clearInterval(interval);
     gameDiv.classList.add('fadeOut');
     setTimeout(()=>{
