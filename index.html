@@ -1,106 +1,115 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Happy Birthday Sayash 💗</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Happy Birthday Sayash 💗</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #ffb6c1, #ff6f91);
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-        }
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffb6c1, #ff6f91);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #fff;
+}
 
-        .container {
-            width: 90%;
-            max-width: 500px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 30px rgba(0,0,0,0.2);
-        }
+.container {
+    width: 92%;
+    max-width: 500px;
+    max-height: 85vh;
+    padding: 18px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    overflow-y: auto;
+    text-align: center;
+}
 
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
+.container::-webkit-scrollbar {
+    width: 6px;
+}
+.container::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.4);
+    border-radius: 10px;
+}
 
-        p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
 
-        button {
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 30px;
-            background: #ff4d6d;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: 0.3s;
-        }
+p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
 
-        button:hover {
-            transform: scale(1.05);
-        }
+button {
+    padding: 14px 28px;
+    font-size: 1.05rem;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d6d;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
 
-        .emoji {
-            position: fixed;
-            top: -50px;
-            font-size: 2rem;
-            animation: fall linear forwards;
-            pointer-events: auto;
-            cursor: pointer;
-        }
+button:hover {
+    transform: scale(1.05);
+}
 
-        @keyframes fall {
-            to {
-                transform: translateY(110vh);
-            }
-        }
+.hidden {
+    display: none;
+}
 
-        .hidden {
-            display: none;
-        }
+.message {
+    text-align: left;
+}
 
-        .message {
-            text-align: left;
-            font-size: 1rem;
-        }
+.emoji {
+    position: fixed;
+    top: -40px;
+    font-size: 2rem;
+    animation: fall linear forwards;
+    cursor: pointer;
+}
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-            p {
-                font-size: 0.95rem;
-            }
-        }
-    </style>
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.35rem; }
+    p { font-size: 0.9rem; }
+    button {
+        font-size: 1rem;
+        padding: 12px 22px;
+    }
+}
+</style>
 </head>
+
 <body>
 
 <div class="container" id="startScreen">
     <h1>🎉 Привет, Саяш 💖</h1>
-    <p>Нажми кнопку и поймай смайлики 💕  
-       Нужно нажать <b>10 раз</b>, чтобы открыть сюрприз 🎁</p>
+    <p>Нажми кнопку и поймай смайлики 💕<br>
+    Нужно нажать <b>10 раз</b>, чтобы открыть сюрприз 🎁</p>
     <button onclick="startGame()">Начать игру 💗</button>
 </div>
 
@@ -108,69 +117,73 @@
     <h1>Happy Birthday my love Sayash💗</h1>
 
     <div class="message">
-        <p>Как ты и сказала, пусть каждый новый день дарит радость,  
+        <p>Как ты и сказала, пусть каждый новый день дарит радость,
         а наша любовь становится только крепче.</p>
 
-        <p>Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце.  
-        Хоть и между нами километры, но чувства от этого не становятся слабее — наоборот,  
-        я ещё больше ценю тебя и каждое наше слово, люблю тебя❤️✨</p>
+        <p>Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце.
+        Хоть и между нами километры, но чувства от этого не становятся слабее —
+        наоборот, я ещё больше ценю тебя и каждое наше слово, люблю тебя❤️✨</p>
 
-        <p>Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest и не верил,  
-        что это ты. Всё потому, что ты на этих фотографиях всегда красивая,  
-        и из-за этого я не мог представить, что такая красивая девушка играет в Блек Рашу😂.  
-        А оказывается, нет — такая девушка существует и общается со мной.  
+        <p>Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest и не верил,
+        что это ты. Всё потому, что ты на этих фотографиях всегда красивая,
+        и из-за этого я не мог представить, что такая красивая девушка играет в Блек Рашу😂.
+        А оказывается — такая девушка существует и общается со мной.
         И я чувствую себя таким везунчиком, что встретил тебя 🥰💖</p>
 
-        <p>Я хочу, чтобы ты знала: ты очень важна для меня.  
-        Твоя улыбка, твой голос, твоя доброта дают мне силы и спокойствие.  
-        Пусть в этот день ты почувствуешь, как тебя любят и как сильно тобой дорожат💓🌸</p>
+        <p>Я хочу, чтобы ты знала: ты очень важна для меня.
+        Твоя улыбка, твой голос, твоя доброта дают мне силы и спокойствие.
+        Пусть в этот день ты почувствуешь, как тебя любят
+        и как сильно тобой дорожат💓🌸</p>
     </div>
 </div>
 
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-    let clicks = 0;
-    let gameStarted = false;
+let clicks = 0;
+let gameStarted = false;
 
-    const emojis = ["💗", "💖", "💘", "😍", "🥰", "✨", "🌸", "❤️"];
+const emojis = ["💗","💖","💘","😍","🥰","✨","🌸","❤️"];
 
-    function startGame() {
-        document.getElementById("startScreen").classList.add("hidden");
-        gameStarted = true;
-        emojiRain();
-    }
+function startGame() {
+    document.getElementById("startScreen").classList.add("hidden");
+    gameStarted = true;
 
-    function emojiRain() {
-        if (!gameStarted) return;
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.5;
+    music.play();
 
-        const emoji = document.createElement("div");
-        emoji.className = "emoji";
-        emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    emojiRain();
+}
 
-        emoji.style.left = Math.random() * 100 + "vw";
-        emoji.style.animationDuration = (3 + Math.random() * 3) + "s";
+function emojiRain() {
+    if (!gameStarted) return;
 
-        emoji.onclick = () => {
-            clicks++;
-            emoji.remove();
-            if (clicks >= 10) {
-                endGame();
-            }
-        };
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.animationDuration = (3 + Math.random() * 3) + "s";
 
-        document.body.appendChild(emoji);
+    emoji.onclick = () => {
+        clicks++;
+        emoji.remove();
+        if (clicks >= 10) endGame();
+    };
 
-        setTimeout(() => {
-            emoji.remove();
-        }, 6000);
+    document.body.appendChild(emoji);
 
-        setTimeout(emojiRain, 400);
-    }
+    setTimeout(() => emoji.remove(), 6000);
+    setTimeout(emojiRain, 400);
+}
 
-    function endGame() {
-        gameStarted = false;
-        document.querySelectorAll(".emoji").forEach(e => e.remove());
-        document.getElementById("messageScreen").classList.remove("hidden");
-    }
+function endGame() {
+    gameStarted = false;
+    document.querySelectorAll(".emoji").forEach(e => e.remove());
+    document.getElementById("messageScreen").classList.remove("hidden");
+}
 </script>
 
 </body>
