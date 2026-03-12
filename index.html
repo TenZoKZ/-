@@ -1,203 +1,98 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>С днем рождения, Саяш 💗</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-<style>
-html, body {
-    margin:0;
-    height:100%;
-    font-family:'Comfortaa',sans-serif;
-}
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg,#330000,#8b0000,#ff4d6d);
-    color:white;
-    overflow-x:hidden;
-}
-.page {
-    display: none;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-}
-.page.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-button {
-    padding: 14px 30px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(135deg,#ff4d6d,#ff758f);
-    color:white;
-    font-size:1.2rem;
-    cursor:pointer;
-    margin-top:20px;
-    transition:0.2s;
-}
-button:hover { transform: scale(1.05); }
-h1 {
-    font-family:'Great Vibes',cursive;
-    font-size:2.5rem;
-    background: linear-gradient(90deg,#ff9aa2,#ff758f);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom:20px;
-}
-#game { position: relative; width:100%; height:60vh; overflow:hidden; margin-top:20px; }
-.emoji {
-    position:absolute;
-    top:-80px;
-    font-size:3rem;
-    cursor:pointer;
-    animation: fall linear;
-    user-select:none;
-}
-@keyframes fall { from {transform: translateY(-80px);} to {transform: translateY(110vh);} }
-@keyframes pop {
-    0% {transform: scale(1); opacity:1;}
-    50% {transform: scale(1.8); opacity:0.7;}
-    100% {transform: scale(0); opacity:0;}
-}
-#message {
-    max-height:60vh;
-    overflow-y:auto;
-}
-.title { 
-    font-family:'Great Vibes',cursive; 
-    font-size:2.8rem; 
-    background: linear-gradient(90deg,#ff9aa2,#ffcad4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom:25px; 
-}
-.line { 
-    margin:18px 0; 
-    font-size:1.1rem; 
-    line-height:1.8; 
-}
-.line.highlight { 
-    background: linear-gradient(90deg,#ff9aa2,#ff758f);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.fadeOut { animation: fadeOut 0.6s forwards; }
-.fadeIn { animation: fadeIn 0.6s forwards; }
-@keyframes fadeOut { from {opacity:1;} to {opacity:0;} }
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-
-.page.enter {
-    animation: enter 1s ease forwards;
-}
-@keyframes enter {
-    0% {opacity:0; transform: scale(0.9);}
-    100% {opacity:1; transform: scale(1);}
-}
-</style>
+<title>FBI Secure Database</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div id="main" class="page active enter">
-    <h1>Привет, Саяш 💗</h1>
-    <p>Нажми кнопку "Начать игру", чтобы поймать смайлики!</p>
-    <button onclick="showGame()">Начать игру 💞</button>
+<div id="login">
+
+<h2>FBI LOGIN</h2>
+
+<input id="user" placeholder="Login">
+<input id="pass" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
 </div>
 
-<div id="gameDiv" class="page">
-    <h1>Поймай 10 смайликов 💖</h1>
-    <div id="counter">Поймано: 0 / 10</div>
-    <div id="game"></div>
+<div id="app">
+
+<header>
+
+<h1>FBI DATABASE</h1>
+
+<nav>
+
+<button onclick="showPage('agents')">Agents</button>
+<button onclick="showPage('cases')">Cases</button>
+
+</nav>
+
+</header>
+
+<section id="agents">
+
+<h2>Agents</h2>
+
+<input id="agentName" placeholder="Agent name">
+
+<select id="agentRank">
+<option>Agent</option>
+<option>Senior Agent</option>
+<option>Inspector</option>
+</select>
+
+<select id="agentDivision">
+<option>CID</option>
+<option>HRT</option>
+<option>IA</option>
+</select>
+
+<button onclick="addAgent()">Add Agent</button>
+
+<table id="agentTable">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Rank</th>
+<th>Division</th>
+<th>Delete</th>
+</tr>
+
+</table>
+
+</section>
+
+<section id="cases">
+
+<h2>Cases</h2>
+
+<input id="caseName" placeholder="Case name">
+<input id="caseAgent" placeholder="Agent">
+
+<button onclick="addCase()">Add Case</button>
+
+<table id="caseTable">
+
+<tr>
+<th>ID</th>
+<th>Case</th>
+<th>Agent</th>
+<th>Delete</th>
+</tr>
+
+</table>
+
+</section>
+
 </div>
 
-<div id="messageDiv" class="page">
-    <div id="message" class="card">
-        <div class="title">Happy Birthday my love Sayash 💗</div>
-        <div class="line highlight">Как ты и сказала, пусть каждый новый день дарит радость, а наша любовь становится только крепче.</div>
-        <div class="line">Даже несмотря на расстояние, ты всегда рядом в моих мыслях и в моём сердце. Пусть между нами километры, но чувства от этого не становятся слабее — наоборот, я ещё больше ценю тебя и каждое наше слово. Люблю тебя ❤️✨</div>
-        <div class="line highlight">Помнишь, когда мы играли в мафию, я сказал, что твои фотки из Pinterest и не верил, что это ты. Просто потому, что ты там слишком красивая, и я не мог представить, что такая девушка играет в Блек Рашу 😂</div>
-        <div class="line">А оказывается — такая девушка существует… и общается со мной. И я чувствую себя невероятным везунчиком, что встретил тебя 🥰💖</div>
-        <div class="line highlight">Я хочу, чтобы ты знала: ты очень важна для меня. Твоя улыбка, твой голос и твоя доброта дают мне силы и спокойствие. Пусть в этот день ты почувствуешь, как тебя любят и как сильно тобой дорожат 💓🌸</div>
-        <div class="line">И знай, я очень жду тот день, когда расстояние между нами перестанет быть преградой. </div>
-        <div class="line highlight">Жду нашей встречи, твоей улыбки и момента, когда смогу быть рядом с тобой. Иногда я представляю, как мы просто идём рядом, разговариваем ни о чём и смеёмся, и от этих мыслей становится теплее. Это ожидание не тяготит, потому что я знаю, что оно стоит тебя.</div>
-        <div class="line">Я верю, что совсем скоро мы будем рядом, и все эти слова я смогу сказать тебе лично, жаным 💕</div>
-    </div>
-</div>
+<script src="script.js"></script>
 
-<audio id="bg-music" src="music.mp3" loop></audio>
-
-<script>
-const main = document.getElementById('main');
-const gameDiv = document.getElementById('gameDiv');
-const messageDiv = document.getElementById('messageDiv');
-const game = document.getElementById('game');
-const counter = document.getElementById('counter');
-const music = document.getElementById('bg-music');
-
-const emojis = ['💖','💗','💘','💕','🥰','😍','✨','🌸','💞','❤️'];
-const colors = ['#ffe0ec','#ffcad4','#ffb6c1','#ff69b4','#ff1493','#ff7f50','#f0e68c','#adff2f','#00ced1','#7fffd4'];
-
-let count = 0;
-const maxClicks = 10;
-let interval;
-let gameOver = false;
-
-function randomColor(){ return colors[Math.floor(Math.random()*colors.length)]; }
-
-function createEmoji() {
-    if(count>=maxClicks || gameOver) return;
-    const emoji = document.createElement('div');
-    emoji.className='emoji';
-    emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    emoji.style.color = randomColor();
-    const emojiSize = 48; 
-    emoji.style.left = Math.random() * (window.innerWidth - emojiSize) + 'px';
-    const duration = Math.random()*4+6;
-    emoji.style.animationDuration = duration+'s';
-    emoji.onclick=()=>{
-        if(gameOver) return;
-        count++;
-        counter.textContent=`Поймано: ${count} / ${maxClicks}`;
-        emoji.style.animation='pop 0.5s forwards';
-        setTimeout(()=>emoji.remove(),500);
-        if(count>=maxClicks) endGame();
-    }
-    game.appendChild(emoji);
-    setTimeout(()=>emoji.remove(), duration*1000);
-}
-
-function showGame(){
-    main.classList.add('fadeOut');
-    setTimeout(()=>{
-        main.classList.remove('active','fadeOut');
-        gameDiv.classList.add('active','fadeIn');
-        interval = setInterval(createEmoji,300);
-    },600);
-}
-
-function endGame(){
-    gameOver = true;
-    clearInterval(interval);
-    gameDiv.classList.add('fadeOut');
-    setTimeout(()=>{
-        gameDiv.classList.remove('active','fadeOut');
-        messageDiv.classList.add('active','fadeIn');
-        music.volume=0.4;
-        music.play();
-        document.body.style.overflow='auto';
-    },600);
-}
-</script>
 </body>
 </html>
-
-
